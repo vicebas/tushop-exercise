@@ -29,18 +29,30 @@ def parse_jobs_input():
   return jobs
 
 def findLastNonConflict(jobs, n):
+  """
+  This code takes all the jobs already considered and finds the last job that does not conflict with the current job.
+  """
   for key in reversed(range(n)):
     if jobs[key].end_time <= jobs[n].start_time:
       return key
   return -1
 
+
+"""
+The jobs_left works by sorting the jobs by end time and then iterating through the jobs to find the maximum profit that can be made by selecting a subset of the jobs.
+It does that creating a list of maximum profit, adding the profit of the current job to the maximum profit of the last job that does not conflict with the current job.
+After iterating through all the jobs, it removes the best profit from the total profit to get the total profit that can be made by the jobs that are not selected.
+It also counts how many jobs you can do with each maximum profit. It removes this number from the total number of jobs to get the number of jobs that are left.
+"""
 def jobs_left(jobs):
   if not jobs:
-    return 0
+    return [0,0]
+
   jobs.sort(key=lambda x: x.end_time)
   max_profit = [[0,0] for _ in jobs]
   max_profit[0] = [jobs[0].profit,1]
   total_profit = jobs[0].profit
+  #
   for i in range(1, len(jobs)):
     total_profit += jobs[i].profit
     key = findLastNonConflict(jobs, i)

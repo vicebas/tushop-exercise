@@ -14,6 +14,11 @@ def read_goodies_file(file_name="sample_input.txt"):
     goodies.append((goodie[0], int(goodie[1].strip())))
   return employees, goodies
 
+"""
+  the get_goodies method sort the goodies by price and then iterate through the list to find the subset that will get us 
+  the lowest difference between the i item and the i+n item (with n being the number of employees)
+  It returns the lowest difference and the subset of goodies that will be distributed
+"""
 def get_goodies(employees, goodies):
   goodies.sort(key=lambda x: x[1])
   lowest_diff = goodies[employees][1] - goodies[0][1]
