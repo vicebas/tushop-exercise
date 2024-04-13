@@ -1,5 +1,6 @@
 # Coding Assignment
 
+This repository contains the solutions to the coding assignment problems described on the [`Coding Assignment.md`](Coding%20Assignment.md) file.
 All the problems are solved in Python 3.10.
 
 ## Executing each problem
